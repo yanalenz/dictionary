@@ -1,0 +1,5 @@
+dictionary_app/
+├── app.py          # GUI
+├── storage.py      # работа с JSON
+├── logic.py        # логика словаря
+└── data.json       # блокнот
