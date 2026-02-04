@@ -37,16 +37,15 @@ def main_page():
 
     @ui.refreshable
     def render_list():
-        with ui.column().classes('w-full gap-2 mt-4'):
+        with ui.column().classes('w-full gap-2 mt-4 bg-zinc-700'):
             for item in words_list:
-                with ui.row().classes('w-full items-center justify-between bg-neutral-800 rounded'):
+                with ui.row().classes('w-full items-center justify-between bg-zinc-700 rounded p-2'):
                     with ui.row().classes('gap-4'):
-                        ui.label(item.english).classes('font-bold text-white w-24')
-                        ui.label('—')
-                        ui.label(item.russian).classes('italic text-zinc-50')
-                    
+                        ui.label(item.english).classes('w-16 text-sm font-bold text-bg-red-200')
+                        ui.label('–').classes('mx-2 text-bg-stone-600')
+                        ui.label(item.russian).classes('italic text-sm text-bg-red-100')
                     ui.button(icon='delete', on_click=lambda i=item: remove_word(i)) \
-                        .props('flat fab-mini color=white')
+                        .props('flat fab-mini color=bg-stone-300')
 
     async def add_word():
         text = input_field.value.strip().lower()
@@ -75,12 +74,11 @@ def main_page():
         render_list.refresh()
 
     # ui
-    with ui.card().classes('w-96 mx-auto mt-10 p-6 bg-rose-200'):
-        ui.label('My Dictionary').classes('text-2xl text-bg-zinc-300 font-bold mx-auto')
-        input_field = ui.input(label='English word').classes('w-full').props('grey') \
+    with ui.card().classes('w-96 mx-auto mt-10 p-6 bg-zinc-800'):
+        ui.label('My dictionary').classes('text-2xl text-bg-gray-200 font-bold mx-auto')
+        input_field = ui.input(label='English word').classes('w-full').props('bg-gray-500') \
             .on('keydown.enter', add_word)
-        ui.button('Add', on_click=add_word).props('color=pink-2').classes('w-full mt-2')
-        
+        ui.button('Add', on_click=add_word).props('color=bg-red-950').classes('w-full mt-2')
         ui.separator().classes('my-4')
         render_list()
 
